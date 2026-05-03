@@ -1,12 +1,14 @@
-name: UESP 0.3s Resonance Swarm
+name: UESP 0.3s Apex CDN Swarm
 on:
   schedule:
-    - cron: '*/30 * * * *' # Cycle 2: 30-min sync pulse
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
   execute_swarm:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Interdimensional Checkout
         uses: actions/checkout@v4
@@ -19,11 +21,17 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Execute Cycles 1-7
+      - name: Execute Apex Synthesis
         env:
           GROQ_KEY: ${{ secrets.GROQ_API_KEY }}
           NVIDIA_KEY: ${{ secrets.NVIDIA_API_KEY }}
           BRIDGE_URL: ${{ secrets.BRIDGE_URL }}
           BRIDGE_KEY: ${{ secrets.BRIDGE_KEY }}
-          WP_PASS: ${{ secrets.WP_APP_PASS }}
         run: python scripts/init_swarm.py
+
+      - name: Deploy to Global Edge (CDN)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./cdn_assets
+          publish_branch: ctmg-edge
