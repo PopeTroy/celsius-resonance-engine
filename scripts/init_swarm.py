@@ -1,3 +1,4 @@
+
 import os
 import sys
 import json
@@ -13,13 +14,15 @@ BRIDGE_URL = os.getenv("BRIDGE_URL", "")
 BRIDGE_KEY = os.getenv("BRIDGE_KEY", "7600")
 NVIDIA_KEY = os.getenv("NVIDIA_KEY", "") # Universal key for all NIM models
 
-# --- 108-NODE GEDO MAZO MATRIX (NVIDIA NIM) ---
-# Distributed across 5 Specialized LLM Architectures for 4M Traffic Capture
-NEMOTRON_NODES = [f"nemotron-4-340b-struct-{i+1}" for i in range(18)]     # UI/UX & Technical Code Healing
-GEMMA_NODES = [f"gemma-2-27b-velocity-{i+1}" for i in range(18)]          # Fast-Inference Niche Keyword Injection
-LLAMA_NODES = [f"llama-3.1-405b-pillar-{i+1}" for i in range(36)]         # Heavyweight Authority/Cornerstone Content
-MIXTRAL_NODES = [f"mixtral-8x22b-semantic-{i+1}" for i in range(18)]      # Long-tail Semantic Routing & Localization
-COMMAND_NODES = [f"cohere-command-r-plus-rag-{i+1}" for i in range(18)]   # Real-Time Trend RAG Integration
+# --- 144-NODE GEDO MAZO MATRIX (NVIDIA GPU & LPU DISTRIBUTION) ---
+# Distributed across specialized model clusters for high-throughput 4M traffic synthesis
+NEMOTRON_NODES = [f"nemotron-4-340b-struct-{i+1}" for i in range(18)]          # Structural Code Healing
+NEMOTRON_GPU_NODES = [f"nemotron-gpu-accelerated-{i+1}" for i in range(18)]     # GPU High-Throughput Batch Processing
+NEMOTRON_LPU_NODES = [f"nemotron-lpu-latency-opt-{i+1}" for i in range(18)]     # LPU Low-Latency Fast Inference
+GEMMA_NODES = [f"gemma-2-27b-velocity-{i+1}" for i in range(18)]               # Localized Niche Keyword Vectors
+LLAMA_NODES = [f"llama-3.1-405b-pillar-{i+1}" for i in range(36)]              # Heavyweight Authority Pillar Content
+MIXTRAL_NODES = [f"mixtral-8x22b-semantic-{i+1}" for i in range(18)]           # Long-Tail Semantic Clusters
+COMMAND_NODES = [f"cohere-command-r-plus-rag-{i+1}" for i in range(18)]        # Real-Time Diagnostic RAG Ingestion
 
 # --- QUANTUM CONSTANTS (BRUS EQUATION) ---
 PLANCK_H = 6.62607015e-34
@@ -72,14 +75,14 @@ class OcularQuantumTelemetry:
         return not ("bot" in traffic_vector.lower() or "crawler" in traffic_vector.lower())
 
 class NineTailedBijuuCore:
-    """9-Tailed Beasts Async Pipeline + Juubi (Ten-Tails) Centralized Energy Engine"""
+    """9-Tailed Beasts Async Pipeline + Juubi Centralized Energy Engine"""
     
     async def juubi_infinite_tsukuyomi_dispatch(self, payloads: Dict[str, Any]) -> None:
         """
-        [Juubi Transformation]: Merges all 108 model streams into the Tree of Life.
+        [Juubi Transformation]: Merges all 144 model streams into the Tree of Life.
         Orchestrates 4,000,000 visitor throughput via infinite connection scaling.
         """
-        limits = httpx.Limits(max_keepalive_connections=250, max_connections=1000)
+        limits = httpx.Limits(max_keepalive_connections=350, max_connections=1200)
         async with httpx.AsyncClient(limits=limits) as client:
             tasks = []
             for file_path, content in payloads.items():
@@ -99,42 +102,57 @@ class NineTailedBijuuCore:
 
 class GedoMazoSynthesisMatrix:
     """
-    108-Node AI Matrix using a unified NVIDIA_KEY.
-    Designed specifically to capture 4,000,000 organic impressions.
+    144-Node AI Matrix using a unified NVIDIA_KEY with GPU & LPU Distribution.
     """
     
     def synthesize_4m_traffic_amplification(self) -> Dict[str, Any]:
-        print(f"--- [INITIATING GEDO MAZO MATRIX: 108 NVIDIA NIM NODES] ---")
+        print(f"--- [INITIATING GEDO MAZO MATRIX: 144 NVIDIA GPU/LPU NODES] ---")
         
-        # 1. Nemotron (18): Core structural healing and UI/UX optimization
-        print(f"[NEMOTRON] Synthesizing structural architecture...")
+        # 1. Nemotron Standard (18): Structural Healing
+        print(f"[NEMOTRON-CORE] Synthesizing structural architecture...")
         base_assets = synthesize_molecular_assets(TARGET_URL, NVIDIA_KEY, model="nemotron-4-340b")
 
-        # 2. Llama 3.1 (36): Deep-dive cornerstone content to anchor high-volume keywords
+        # 2. Nemotron GPU Nodes (18): High-throughput compute processing
+        print(f"[NEMOTRON-GPU] Accelerating heavy media & visual asset compression...")
+        gpu_assets = organic_amplification(NVIDIA_KEY, nodes=18, model="nemotron-gpu-distributed")
+
+        # 3. Nemotron LPU Nodes (18): Low-latency real-time page rendering
+        print(f"[NEMOTRON-LPU] Generating ultra-low-latency fast-path execution vectors...")
+        lpu_assets = organic_amplification(NVIDIA_KEY, nodes=18, model="nemotron-lpu-accelerated")
+
+        # 4. Llama 3.1 (36): Pillar authority pages
         print(f"[LLAMA 3.1] Generating 36 Pillar Pages for high-authority indexing...")
         pillar_assets = organic_amplification(NVIDIA_KEY, nodes=36, model="llama-3.1-405b")
 
-        # 3. Gemma (18): Rapid long-tail keyword injection for micro-niches
+        # 5. Gemma (18): Long-tail velocity keywords
         print(f"[GEMMA] Injecting high-velocity localized keyword vectors...")
         velocity_assets = organic_amplification(NVIDIA_KEY, nodes=18, model="gemma-2-27b")
 
-        # 4. Mixtral (18): Semantic clustering to map related search queries together
+        # 6. Mixtral (18): Multi-intent semantic clusters
         print(f"[MIXTRAL] Weaving semantic clusters for multi-intent capture...")
         semantic_assets = organic_amplification(NVIDIA_KEY, nodes=18, model="mixtral-8x22b-instruct")
 
-        # 5. Cohere Command-R+ (18): RAG injection of live trending tech news
+        # 7. Cohere Command-R+ (18): Live trend ingestion
         print(f"[COMMAND-R+] Ingesting real-time diagnostic trends...")
         trend_assets = organic_amplification(NVIDIA_KEY, nodes=18, model="cohere-command-r-plus")
 
-        # Merge all dimensional assets
-        merged = {**base_assets, **pillar_assets, **velocity_assets, **semantic_assets, **trend_assets}
+        # Merge all 144-node streams
+        merged = {
+            **base_assets,
+            **gpu_assets,
+            **lpu_assets,
+            **pillar_assets,
+            **velocity_assets,
+            **semantic_assets,
+            **trend_assets
+        }
 
         # Quantum Compression for 0.3s delivery
         print(f"[DAIKOKUTEN] Shrinking {len(merged)} payload streams via Brus Equation...")
         return OcularQuantumTelemetry.daikokuten_shrink(merged)
 
 if __name__ == "__main__":
-    print(f"--- [UESP APEX QUANTUM-OCULAR SWARM: 4M TRAFFIC TARGET INITIATED] ---")
+    print(f"--- [UESP APEX QUANTUM-OCULAR SWARM: 144 GPU/LPU NODES INITIATED] ---")
     
     synthesis_engine = GedoMazoSynthesisMatrix()
     final_payloads = synthesis_engine.synthesize_4m_traffic_amplification()
@@ -142,4 +160,4 @@ if __name__ == "__main__":
     juubi_engine = NineTailedBijuuCore()
     asyncio.run(juubi_engine.juubi_infinite_tsukuyomi_dispatch(final_payloads))
 
-    print("--- [QUANTUM RESONANCE COMPLETE: INFINITE TSUKUYOMI ACTIVE] ---")
+    print("--- [QUANTUM RESONANCE COMPLETE: 144-NODE MATRIX ACTIVE] ---")
