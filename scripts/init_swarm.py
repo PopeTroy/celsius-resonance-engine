@@ -1,4 +1,3 @@
-
 import os
 import sys
 import json
@@ -89,16 +88,21 @@ class NineTailedBijuuCore:
                 phased_path = OcularQuantumTelemetry.kamui_phase_shift(file_path)
                 if isinstance(content, str):
                     content = OcularQuantumTelemetry.tenseigan_reincarnation(content)
-                tasks.append(self._handshake_execution(client, phased_path, content))
+                tasks.append(self.handshake_rust_edge(client, phased_path, content))
             await asyncio.gather(*tasks)
 
-    async def _handshake_execution(self, client: httpx.AsyncClient, file_path: str, content: Any) -> None:
-        payload = {'key': BRIDGE_KEY, 'action': 'heal', 'file': file_path, 'content': content}
+    async def handshake_rust_edge(self, client: httpx.AsyncClient, file_path: str, content: str) -> None:
+        payload = {
+            "key": BRIDGE_KEY,
+            "action": "heal",
+            "file_path": file_path,
+            "content": content
+        }
         try:
-            await client.post(BRIDGE_URL, data=payload, timeout=30.0)
-            print(f"[JUUBI 7600 SYNC OK] -> {file_path}")
+            res = await client.post("http://127.0.0.1:8080/api/heal", json=payload, timeout=5.0)
+            print(f"[RUST-EDGE OK] -> {file_path}: {res.json()['status']}")
         except Exception as e:
-            print(f"[JUUBI DISRUPTION] -> {file_path}: {e}")
+            print(f"[RUST-EDGE FAIL] -> {file_path}: {e}")
 
 class GedoMazoSynthesisMatrix:
     """
